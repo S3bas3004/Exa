@@ -1,0 +1,35 @@
+classDiagram
+direction LR
+
+class Profesor {
+  +int IdentificacionP
+  +string Nombre
+  +string Materia
+  +bool Matricula
+}
+
+class Estudiante {
+  +int IdentificacionE
+  +string Nombre
+  +string Materia que desea reforzar
+  +Bool Otro curso
+}
+
+class Relacion {
+  +int IdRelacion
+  +int IdentificacionP_FK
+  +int IdentificacionE_FK
+  +date Fecha
+  +string Estado
+}
+
+class Extra {
+  +int IdExtra
+  +string Nombre
+  +string Correo
+  +bool Activo
+}
+
+Profesor "1" --> "0..*" Relacion : FK
+Estudiante "1" --> "0..*" Relacion : FK
+Extra "1" --> "0..*" Estudiante : participa

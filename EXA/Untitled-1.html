@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Agenda de Clases con Login</title>
+
+<style>
+body{
+    font-family: Arial;
+    background:#7ea3ef;
+    margin:0;
+}
+
+.contenedor{
+    max-width:700px;
+    margin:40px auto;
+    background:#b3cff8;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+h1{
+    text-align:center;
+}
+
+input, select, button{
+    width:100%;
+    padding:8px;
+    margin-top:5px;
+    margin-bottom:15px;
+    border-radius:5px;
+    border:1px solid #ccc;
+}
+
+button{
+    background:#ff0026;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#025dbf;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th, td{
+    border:1px solid #ddd;
+    padding:8px;
+    text-align:center;
+}
+
+th{
+    background:#007bff;
+    color:white;
+}
+
+.eliminar{
+    background:red;
+}
+
+.eliminar:hover{
+    background:darkred;
+}
+
+.hidden{
+    display:none;
+}
+
+.usuario-info{
+    text-align:right;
+    font-size:14px;
+    margin-bottom:10px;
+}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="contenedor" id="loginDiv">
+    <h1>Iniciar Sesión</h1>
+
+    <label>Nombre</label>
+    <input type="text" id="loginNombre">
+
+    <label>Rol</label>
+    <select id="loginRol">
+        <option value="Estudiante">Estudiante</option>
+        <option value="Profesor">Profesor</option>
+    </select>
+
+    <button onclick="iniciarSesion()">Ingresar</button>
+</div>
+
+<!-- AGENDA -->
+<div class="contenedor hidden" id="agendaDiv">
+    
+    <div class="usuario-info">
+        Usuario: <span id="usuarioNombre"></span> 
+        (<span id="usuarioRol"></span>)
+        <button onclick="cerrarSesion()" style="width:auto;padding:5px 10px;margin-left:10px;background:gray;">Cerrar sesión</button>
+    </div>
+
+    <h1>Agenda de Clases</h1>
+
+    <label>Materia</label>
+    <select id="materia">
+        <option>Matemáticas</option>
+        <option>Inglés</option>
+        <option>Programación</option>
+        <option>Ciencias</option>
+        <option>Historia</option>
+    </select>
+
+    <button onclick="agregarClase()">Agendar Clase</button>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Usuario</th>
+                <th>Materia</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody id="tablaClases"></tbody>
+    </table>
+</div>
+
+<script>
+
+let usuarioActual = "";
+let rolActual = "";
+
+function iniciarSesion(){
+    let nombre = document.getElementById("loginNombre").value;
+    let rol = document.getElementById("loginRol").value;
+
+    if(nombre === ""){
+        alert("Ingrese su nombre");
+        return;
+    }
+
+    usuarioActual = nombre;
+    rolActual = rol;
+
+    document.getElementById("usuarioNombre").innerText = nombre;
+    document.getElementById("usuarioRol").innerText = rol;
+
+    document.getElementById("loginDiv").classList.add("hidden");
+    document.getElementById("agendaDiv").classList.remove("hidden");
+}
+
+
+</script>
+
+</body>
+</html>
