@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema Agenda</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+
+<div class="banner">
+    <img src="https://images.pexels.com/photos/6344239/pexels-photo-6344239.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Clases">
+    <div class="texto-banner">
+        <h1>Ageda tu clase para reforzar</h1>
+        <p>Contigo, para ti y sin presión</p>
+    </div>
+</div>    
+
+<!-- LOGIN -->
+<div class="contenedor" id="loginDiv">
+    <h2>Login</h2>
+    <input type="text" id="loginUser" placeholder="Usuario">
+    <input type="password" id="loginPass" placeholder="Contraseña">
+    <button onclick="login()">Ingresar</button>
+    <button onclick="mostrarRegistro()">Crear cuenta</button>
+</div>
+
+ <!-- Modo oscuro, son las 3 de la mañana, funciona para lo que fue creado xd -->
+<button onclick="toggleDark()"> Modo oscuro</button>
+
+<!-- REGISTRO --> <!-- Esta parte es el registro pero hubieron MUCHOS fallos, videos y todo  //quiero hacer más -->
+<div class="contenedor hidden" id="registroDiv">
+    <h2>Registro</h2>
+    <input type="text" id="regUser" placeholder="Usuario">
+    <input type="password" id="regPass" placeholder="Contraseña">
+
+    <select id="regRol">
+        <option>Estudiante</option>
+        <option>Profesor</option>
+    </select>
+
+    <button onclick="registrar()">Registrar</button>
+    <button onclick="volverLogin()">Volver</button>
+</div>
+
+<!-- AGENDA -->
+<div class="contenedor hidden" id="agendaDiv">
+
+    <h3 id="userInfo"></h3>
+    <button onclick="logout()">Cerrar sesión</button>
+
+    <!-- MENÚ -->
+    <div class="menu">
+        <button onclick="mostrarModulo('crear')">Agendar</button>
+        <button onclick="mostrarModulo('clases')">Ver Clases</button>
+    </div>
+
+    <!-- FORMULARIO (INSERT) -->
+    <div id="moduloCrear">
+        <h3>Agendar Clase</h3>
+
+        <select id="materia">
+            <option>Matemáticas</option>
+            <option>Inglés</option>
+            <option>Programación</option>
+        </select>
+
+        <input type="date" id="fecha">
+        <input type="time" id="hora">
+
+        <button onclick="agregarClase()">Guardar</button>
+    </div>
+
+    <!-- TABLA (SELECT) -->
+    <div id="moduloClases" class="hidden">
+        <h3>Lista de Clases</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>Materia</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                </tr>
+            </thead>
+            <tbody id="tabla"></tbody>
+        </table>
+    </div>
+
+</div>
+
+<!-- SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script> <!-- curiosamente y con ayuda de un compañero se dio con el error, no era compatible lo anterior que se ponia -->
+<script src="app.js"></script>
+
+</body>
+</html>
